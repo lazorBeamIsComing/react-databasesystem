@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# 실습목적
+본 프로젝트는 실습목적입니다.
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
