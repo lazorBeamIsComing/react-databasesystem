@@ -21,34 +21,26 @@ const styles = theme => ({
   }
 })
 
-const customers = [{
-  'id' : 1,
-  'image' : 'https://placeimg.com/64/64/any',
-  'name': '홍길동',
-  'birthday' : '970319',
-  'gender': '남자',
-  'job' : '대학생'
-},
-{
-  'id' : 2,
-  'image' : 'https://placeimg.com/64/64/any',
-  'name': '홍길동2',
-  'birthday' : '922222',
-  'gender': '남자',
-  'job' : '머학생'
-},
-{
-  'id' : 3,
-  'image' : 'https://placeimg.com/64/64/any',
-  'name': '홍길동3',
-  'birthday' : '933333',
-  'gender': '남자',
-  'job' : '학생'
-}
-]
+
 
 
 class App extends Component {
+
+  state = {
+    customers: ""
+  }
+  componentDidMount(){
+    this.callApi()
+    .then(res => this.setState({customers: res}))
+    .catch(err => console.log(err));
+  }
+  
+  callApi = async() => {
+    const response = await fetch('/api/customers');
+    const body = await response.json();
+    return body;
+  }
+
   render(){
     const{classes} = this.props;
     return(
@@ -57,7 +49,7 @@ class App extends Component {
           <TableHead>
             <TableRow>
               <TableCell>번호</TableCell>
-              <TableCell>이미지</TableCell>
+              <TableCell>프로필</TableCell>
               <TableCell>이름</TableCell>
               <TableCell>생년월일</TableCell>
               <TableCell>성별</TableCell>
@@ -66,7 +58,9 @@ class App extends Component {
           </TableHead>
 
           <TableBody>
-            {customers.map(c=>{ return (<Customer key={c.id} id={c.id} image={c.image} name={c.name} birthday={c.birthday} gender={c.gender} job={c.job}/>)})}
+            {this.state.customers ? this.state.customers.map(c=>{ 
+              return (<Customer key={c.id} id={c.id} image={c.image} name={c.name} birthday={c.birthday} gender={c.gender} job={c.job}/>)
+            }) : ""}
           </TableBody>
         </Table>
       </Paper>
