@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Customer from './components/Customer.js';
+import Product from './components/Product.js';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
@@ -75,17 +74,17 @@ class App extends Component {
           <TableHead>
             <TableRow>
               <TableCell>번호</TableCell>
-              <TableCell>프로필</TableCell>
-              <TableCell>이름</TableCell>
-              <TableCell>생년월일</TableCell>
-              <TableCell>성별</TableCell>
-              <TableCell>직업</TableCell>
+              <TableCell>제품사진</TableCell>
+              <TableCell>제품명</TableCell>
+              <TableCell>매움</TableCell>
+              <TableCell>주메뉴가능</TableCell>
+              <TableCell>asdf</TableCell>
             </TableRow>
           </TableHead>
 
           <TableBody>
             {this.state.customers ? this.state.customers.map(c=>{ 
-              return (<Customer key={c.id} id={c.id} image={c.image} name={c.name} birthday={c.birthday} gender={c.gender} job={c.job}/>)
+              return (<Product key={c.pid} pid={c.pid} image={c.image} pname={c.pname} spicy={c.spicy} mainable={c.mainable} price={c.price}/>)
             }) : 
             <TableRow>
               <TableCell colSpan="6" align="center">
